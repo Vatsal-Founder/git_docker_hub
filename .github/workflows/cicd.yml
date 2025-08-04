@@ -49,9 +49,10 @@ jobs:
           uses: docker/build-push-action@v4
           with:
             context: .
-            file: Dockerfile
+            file: ./Dockerfile
             push: true
             tags: ${{ secrets.DOCKER_USERNAME }}/my-flask-app:latest
         
         - name: image digest
-          run: echo "IMAGE_DIGEST=${{ steps.build-and-publish.outputs.digest }}
+          id: image_digest
+          run: echo "IMAGE_DIGEST=${{ steps.build-and-publish.outputs.digest }}"
